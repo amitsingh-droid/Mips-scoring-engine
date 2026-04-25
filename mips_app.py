@@ -679,6 +679,15 @@ dashboard_df = pd.DataFrame(rows)
 dashboard_df = pd.DataFrame(rows)
 dashboard_df = dashboard_df.sort_values(by=["Group", "Scenario"])
 
+def your_function(val):
+    try:
+        return "color: red" if float(val) < 0 else ""
+    except:
+        return ""
+
+def highlight_total(col):
+    return ["background-color: yellow" for _ in col]
+
 styled_df = (
     dashboard_df.style
     .map(your_function)

@@ -678,8 +678,10 @@ dashboard_df = pd.DataFrame(rows)
 # Sort by group for clean layout
 dashboard_df = dashboard_df.sort_values(by=["Group", "Scenario"])
 
-styled_df = dashboard_df.style.map(your_function)
-    highlight_total, subset=["Total"]
+styled_df = (
+    dashboard_df.style
+    .map(your_function)
+    .apply(highlight_total, subset=["Total"])
 )
 
 st.dataframe(styled_df, use_container_width=True)

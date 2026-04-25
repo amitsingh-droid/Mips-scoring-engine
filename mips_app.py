@@ -676,9 +676,16 @@ def highlight_total(val):
 dashboard_df = pd.DataFrame(rows)
 
 # Sort by group for clean layout
+# Sort by group for clean layout
 dashboard_df = dashboard_df.sort_values(by=["Group", "Scenario"])
 
-styled_df = dashboard_df.style.applymap(
+def highlight_total(val):
+    try:
+        return "background-color: #90EE90; font-weight: bold;" if float(val) >= 75 else ""
+    except:
+        return ""
+
+styled_df = dashboard_df.style.map(
     highlight_total, subset=["Total"]
 )
 

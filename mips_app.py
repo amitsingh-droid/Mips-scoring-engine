@@ -678,7 +678,7 @@ dashboard_df = pd.DataFrame(rows)
 # Sort by group for clean layout
 dashboard_df = dashboard_df.sort_values(by=["Group", "Scenario"])
 
-styled_df = dashboard_df.style.applymap(
+styled_df = dashboard_df.style.map(your_function)
     highlight_total, subset=["Total"]
 )
 

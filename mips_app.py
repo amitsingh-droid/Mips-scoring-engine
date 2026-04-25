@@ -676,22 +676,10 @@ def highlight_total(val):
 dashboard_df = pd.DataFrame(rows)
 
 # Sort by group for clean layout
-dashboard_df = pd.DataFrame(rows)
 dashboard_df = dashboard_df.sort_values(by=["Group", "Scenario"])
 
-def your_function(val):
-    try:
-        return "color: red" if float(val) < 0 else ""
-    except:
-        return ""
-
-def highlight_total(col):
-    return ["background-color: yellow" for _ in col]
-
-styled_df = (
-    dashboard_df.style
-    .map(your_function)
-    .apply(highlight_total, subset=["Total"])
+styled_df = dashboard_df.style.applymap(
+    highlight_total, subset=["Total"]
 )
 
 st.dataframe(styled_df, use_container_width=True)
